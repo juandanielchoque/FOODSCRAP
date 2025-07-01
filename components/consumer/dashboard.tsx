@@ -20,15 +20,24 @@ export function ConsumerDashboard({ user }: ConsumerDashboardProps) {
   const [categories, setCategories] = useState<DishCategory[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [showFilters, setShowFilters] = useState(false)
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState<{
+    category: string
+    minPrice: string
+    maxPrice: string
+    isVegetarian: boolean
+    isVegan: boolean
+    isGlutenFree: boolean
+    sortBy: "price" | "rating" | "name" | "average_rating"
+    sortOrder: "asc" | "desc"
+  }>({
     category: "",
     minPrice: "",
     maxPrice: "",
     isVegetarian: false,
     isVegan: false,
     isGlutenFree: false,
-    sortBy: "average_rating" as "price" | "rating" | "name",
-    sortOrder: "desc" as "asc" | "desc",
+    sortBy: "rating",
+    sortOrder: "desc",
   })
 
   useEffect(() => {
@@ -76,7 +85,7 @@ export function ConsumerDashboard({ user }: ConsumerDashboardProps) {
       isVegetarian: false,
       isVegan: false,
       isGlutenFree: false,
-      sortBy: "average_rating",
+      sortBy: "rating",
       sortOrder: "desc",
     })
     setSearchQuery("")

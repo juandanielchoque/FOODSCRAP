@@ -53,7 +53,8 @@ export async function uploadImage(formData: FormData) {
     }
 
     // Crear directorio si no existe
-    const uploadDir = join(process.cwd(), "public", "uploads", entityType)
+    const uploadDir = join(__dirname, "..", "public", "uploads", entityType)
+
     await mkdir(uploadDir, { recursive: true })
 
     // Generar nombre único para el archivo
